@@ -1,0 +1,91 @@
+using System;
+class HelloWorld {
+	static void Main() {
+
+		bool weiterspielen = true;
+		while (weiterspielen) {
+			Console.WriteLine("Bitte gebe deinen Benutzername ein: ");
+			string name = Console.ReadLine();
+			int Kontostand = 1000;
+			Console.WriteLine("Hallo " + name + ", dein Kontostand ist auf " + Kontostand + " Euro");
+			Console.WriteLine("Wie viel willst du setzen? ");
+			int wetteinsatz = Convert.ToInt32(Console.ReadLine());
+
+			if(Kontostand < wetteinsatz) {
+				Console.WriteLine("Du hast nicht genug Geld auf dem Konto!");
+				return;
+			}
+
+			Console.WriteLine("Welchen modus willst du spielen?");
+			Console.WriteLine("1. Zahl");
+			Console.WriteLine("2. Gerade|Ungerade");
+			Console.WriteLine("3. farbe");
+
+
+
+
+
+			string eingabe = Console.ReadLine();
+			if(eingabe == "1") {
+
+				Random random = new Random();
+				int zufalszahl = random.Next(1, 11);
+
+				Console.WriteLine("Gebe eine Zahl zwischen 0 und 10 ein: ");
+				int wettzahl = Convert.ToInt32(Console.ReadLine());
+
+				if(wettzahl == zufalszahl) {
+					Console.WriteLine("Richtig!, es war die zahl: " + zufalszahl + " Kontostand erhoeht um " + Kontostand * 10 + " Euro");
+				} else {
+
+					Console.WriteLine("falsch!, es war die zahl: " + zufalszahl + " neuer Kontostand: " + (Kontostand - wetteinsatz) + " Euro");
+				}
+
+			}
+
+			else if(eingabe == "2") {
+
+				Random random = new Random();
+				int randomZahl = random.Next(1, 21);
+
+				Console.WriteLine("Gerade oder Ungerade: G|U");
+				string spielZahl = Console.ReadLine().ToUpper();
+
+				if(spielZahl == "G" ) {
+					if(randomZahl % 2 == 0) {
+						Console.WriteLine("Richtig!, Kontostand erhoeht um: " + wetteinsatz + " Euro");
+					} else {
+						Console.WriteLine("Falsch!, es war: "+ randomZahl + " , also nicht gerade. Neuer Kontostand: " + (Kontostand - wetteinsatz) + 						" Euro");
+					}
+				}
+
+
+			}
+
+			else if(eingabe == "3") {
+				string[] farben = {"Rot", "Schwarz"};
+				Random random = new Random();
+				string randomFarbe = farben[random.Next(farben.Length)];
+
+				Console.WriteLine("Welche Farbe willst du Rot|Schwarz");
+				string spielFarbe = Console.ReadLine();
+				if (spielFarbe == randomFarbe) {
+					Console.WriteLine("Richtig!, Es war die Farbe" + randomFarbe + " Kontostand erhoeht um: " + wetteinsatz + " Euro");
+				} else {
+					Console.WriteLine("Falsch!, es war die Farbe: "+ randomFarbe + ". Neuer Kontostand: "  + (Kontostand - wetteinsatz) + " Euro");
+				}
+
+			}
+
+
+			Console.WriteLine("Willst du nochmal spielen ja|nein");
+			string antwort = Console.ReadLine();
+			if(antwort == "ja") {
+				weiterspielen = true;
+			} else {
+				weiterspielen = false;
+			}
+		}
+	}
+
+}
